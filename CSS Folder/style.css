@@ -1,0 +1,419 @@
+/* body,#row1{
+    background-color: rgb(183, 210, 247);
+} */
+
+#body {
+    background-repeat: no-repeat;
+    background-size: cover;   
+    background-attachment: fixed;
+}
+
+#ContainAll {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#Dynamic {
+   border: 1px solid yellow;
+}
+
+#NewRing {
+    display: none;
+    z-index: 20;
+    width: 210px;
+    height: 105px;
+    left: 45%;
+    top: 11%;
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  #NewRing:before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -100%;
+    background: 
+      radial-gradient(farthest-side,#ffd738 80%,#0000) left 70% top    20%/15px 15px,
+      radial-gradient(farthest-side,#020308 92%,#0000) left 65% bottom 19%/12px 12px,
+      radial-gradient(farthest-side,#ecfefe 92%,#0000) left 70% bottom 20%/15px 15px,
+      linear-gradient(#9eddfe 50%,#020308 0);
+    background-repeat: no-repeat;
+    animation: l5 1.5s infinite;
+  }
+  @keyframes l5 {
+    0%,20%   {transform: rotate(0)}
+    40%,60%  {transform: rotate(.5turn)}
+    80%,100% {transform: rotate(1turn)}
+  }
+
+#Heading {
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+}
+
+#HeadBg {
+    /* background-color: rgb(22, 21, 21); */
+    transform: translate(0px,300px);
+}
+
+#Sun3d {
+    animation: Sun3D 5s linear infinite;
+    /* display: none; */
+}
+
+@keyframes Sun3D {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+}
+
+.Search {
+    /* background-color: rgb(22, 21, 21); */
+    transform: translate(0px,400px);
+}
+
+#content {
+    background-color: transparent;
+    display: none;
+}
+
+#PresentCity {
+    color: rgb(0, 0, 0);
+}
+
+#Box1 {
+    /* visibility: hidden; */
+    background-color: rgb(255, 255, 255);
+    font-size: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 1px;
+    /* margin-top: 213px; */
+}
+
+/* #Box2 {
+    visibility: hidden;
+} */
+
+#Box2,#Box12_2nd {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#Box12_1st,#Box12_2nd {
+    background-color: white;
+}
+
+#todayWeather {
+    color: rgb(104, 100, 100);
+}
+.InfoA,.InfoB {
+    font-size: 19px;
+    color: black;
+}
+
+#Box3 {
+    /* visibility: hidden; */
+    background-color: white;
+    font-size: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 1px;
+}
+
+#currentWeather {
+    color: rgb(104, 100, 100);
+}
+
+#Box4 {
+    /* visibility: hidden; */
+    background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#Box30 {
+    /* visibility: hidden; */
+    background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 20px;
+}
+
+#Para4 {
+    font-size: 80px;
+    line-height: 50px;
+    font-weight: 600;
+}
+
+#Para5 {
+    font-size: 21px;
+}
+
+.LeftSideData {
+    font-size: 15px;
+}
+
+#Box5 {
+    /* visibility: hidden; */
+    background-color: white;
+    color: rgb(104, 100, 100);
+    font-size: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 1px;
+}
+
+#Box29 {
+    /* visibility: hidden; */
+    background-color: white;
+    color: rgb(104, 100, 100);
+    font-size: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 1px;
+}
+
+#Box6 {
+    /* visibility: hidden; */
+    background-color: white;
+    /* overflow: auto; */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius:  8px;
+}
+
+.HourlyC {
+    position: relative;
+}
+
+.Ltemp {
+    font-size: 30px;
+    margin: 0px;
+    margin-top: 40px;
+}
+
+#Box7 {
+    /* visibility: hidden; */
+    background-color: white;
+    font-size: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: rgb(104, 100, 100);
+    margin-bottom: 1px;
+}
+
+#Box8,#Box9,#Box10,#Box11,#Box12,#Box13,#Box14,#Box15,#Box16,#Box17,#Box18,#Box19,#Box20,#Box21,#Box22 {
+    background-color: white;
+    margin-bottom: 1px;
+    /* visibility: hidden; */
+}
+
+.EightDay_today {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.EightDay_date {
+    color: rgb(104, 100, 100);
+    font-size: 13px;
+}
+
+.EightDay_Hi {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.EightDay_Lo {
+    color: rgb(104, 100, 100);
+    font-size: 20px;   
+}
+
+.EightDay_day {
+    font-weight: 500;
+}
+
+.EightDay_night,.EightDay_rain {
+    color: rgb(117, 114, 114);
+}
+
+ #Box22 {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+} 
+
+#Box23,#Box25 {
+    /* visibility: hidden; */
+    background-color: white;
+    font-size: 12px;
+    color: rgb(104, 100, 100);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-bottom: 1px;
+}
+
+#Box24,#Box26{
+    /* visibility: hidden; */
+    background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.SunRiseSet,.MoonRiseSet {
+    color: rgb(104, 100, 100);
+    font-size: 14px;
+    border-left: 1px solid rgb(223, 219, 219);
+}
+
+#sun,#PhaseInfo {
+    color: black;
+    font-size: 16px;
+}
+
+#Box27 {
+    /* visibility: hidden; */
+    background-color: white;
+    font-size: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: rgb(104, 100, 100);
+    margin-bottom: 1px;
+}
+
+#Box28 {
+    /* visibility: hidden; */
+    background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#AirQuality,#AQI{
+    font-size: 16px;
+}
+
+#aqiInfo {
+    font-size: 19px;
+    border-right: 3px solid rgb(52, 240, 52);
+}
+
+#PM25val,#COval,#PM10val,#O3val,#SO2val,#NO2val {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#PM25,#CO,#PM10,#O3,#SO2,#NO2 {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+#HorizontalLine {
+    color: purple;
+}
+
+.cloudNlight {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.cloudOnly {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.downpourRain {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.yellowSun {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.cloudySun {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.blueMoon {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.clodyMoon {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.oneCloudSun {
+    position: absolute;
+    transform: translate(25px,0px);
+    /* display: none; */
+}
+
+.AqiMeter {
+    position: absolute;
+    /* display: none; */
+}
+
+.currentWeatherIcon {
+    position: absolute;
+    /* display: none; */
+}
+
+/* #currentWeatherSun {
+    visibility: hidden;
+} */
+
+.VeryHot {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.VeryCold {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.Raining {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.Sunny {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.Storm {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.SunNCloud {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.SunNManyCloud {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}
+
+.cloudDay {
+    position: absolute;
+    transform: translate(180px,0px);
+    /* display: none; */
+}

@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="./CSS Folder/style.css">
+</head>
+<body class="pb-5" id="body" style="background-image: url(./Images/BgImage1.jpg);position: relative;">
+    <div id="NewRing" style="position: absolute;"></div>
+    <div class="container-fluid" id="ContainAll">
+        <div class="container">
+            <div class="row" id="Title">
+                <div class="col-12 py-2" id="HeadBg">
+                    <div class="d-flex justify-content-center" >
+                        <img src="./Images/sun3d.png" id="Sun3d" width="40px">
+                        <span id="Heading">Weather Forecast</span>
+                    </div>
+                </div>
+                <div class="col-10 px-0 mx-auto pt-2 pb-3 d-flex justify-content-between Search" id="Search">
+                    <select class="SearchCountry" id="Dynamic" style="width: 330px;">
+                        <option></option>
+                    </select>
+                    <span id="PresentCity"></span>
+                    <select class="SearchCity" id="DynamicCities" style="width: 330px;">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" id="content">
+        
+        <div class="row justify-content-center" id="row1">
+            <div class="col-10 fw-bold d-flex justify-content-between p-3" id="Box1">
+                <span id="todayWeather">TODAY'S WEATHER</span>
+                <span id="DayNDate">THU, JUN 13</span>
+            </div>
+            <div class="col-10 p-0" id="Box2">
+                <div class="d-flex pt-4 pb-2 px-3" id="Box12_1st">
+                    <img src="./Images/HighTemp1.png" width="25px">
+                    <div class="d-flex InfoA">
+                        &nbsp;
+                        <span id="InfoA1">Sunshine and very hot</span>
+                        &nbsp;
+                        <span class="fw-medium" id="InfoA2">Hi:</span>
+                        &nbsp;
+                        <span class="fw-medium apiError" id="Para1">42</span>
+                        <span class="fw-medium">&deg</span>
+                    </div>
+                </div>
+                <div class="d-flex pb-4 px-3" id="Box12_2nd">
+                    <img src="./Images/Moonfill.png" width="25px">
+                    <div class="d-flex InfoB">
+                        &nbsp;
+                        <span id="InfoB1">Tonight : Clear</span>
+                        &nbsp;
+                        <span class="fw-medium" id="InfoB2">Lo:</span>
+                        &nbsp;
+                        <span class="fw-medium apiError" id="Para2">30</span>
+                        <span class="fw-medium">&deg</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 mt-4 fw-bold d-flex justify-content-between p-3" id="Box3">
+                <span id="currentWeather">CURRENT WEATHER</span>
+                <span class="apiError" id="Para3">17:50</span>
+            </div>
+            <div class="col-10 d-flex py-4" id="Box4">
+                <div class="col-6">
+                    <div class="d-flex ps-3" style="position: relative;">
+                        <img src="./Images/yellow-sun.png" width="190px" id="currentWeatherSun">
+                        <img class="currentWeatherIcon" src="./Images/moon-blue.png" width="190px" id="currentWeatherIcon1">
+                        <img class="currentWeatherIcon" src="./Images/blue-cloud-and-weather.png" width="190px" id="currentWeatherIcon2">
+                        <img class="currentWeatherIcon" src="./Images/downpour-rainy-day.png" width="190px" id="currentWeatherIcon3">
+                        <img class="currentWeatherIcon" src="./Images/yellow-sun-and-blue-cloud.png" width="190px" id="currentWeatherIcon4">
+                        <img class="currentWeatherIcon" src="./Images/moon-and-cloudy-night-16537.png" width="190px" id="currentWeatherIcon5">
+                        <img class="currentWeatherIcon" src="./Images/blue-clouds-and-yellow-sun.png" width="190px" id="currentWeatherIcon6">
+                        <div class="py-3 ms-5">
+                            <p class="m-0 mt-4 pt-3 apiError" id="Para4">41&deg</p>
+                            <p class="m-0 mt-2 apiError" id="Para5">RealFeel 40&deg</p>
+                        </div>
+                    </div>
+                    <div class=" col-11 mt-4 d-flex justify-content-start ">
+                        <p class="fw-medium ps-2 mt-1 apiError" id="Para6">Partly cloudy throughout the day with a chance of rain throughout the day</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Humidity</span>
+                        <span class="fw-bold apiError" id="Para7">39%</span>
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Wind</span>
+                        <span class="fw-bold apiError" id="Para8">SSW 21 km/h</span>
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Pressure</span>
+                        <span class="fw-bold apiError" id="Para9">997 mbar</span>
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Air Quality</span>
+                        <span class="fw-bold apiError" id="Para10">Fair</span>
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Dew Point</span>
+                        <span class="fw-bold apiError" id="Para11">20&deg</span>
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Visibility</span>
+                        <span class="fw-bold apiError" id="Para12">5 km</span>
+                    </div>
+                    <hr class="m-0">
+                    <div class="d-flex justify-content-between py-2">
+                        <span class="LeftSideData">Cloudiness</span>
+                        <span class="fw-bold apiError" id="Para13">50%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 mt-4 p-3" id="Box29">
+                <span id="Looking" class="fw-bold">LOOKING AHEAD</span>
+            </div>
+            <div class="col-10 p-3" id="Box30">
+                <span id="Para14" class="apiError"></span>
+            </div>
+            <div class="col-10 mt-4 p-3" id="Box5">
+                <span id="hourly" class="fw-bold">HOURLY WEATHER</span>
+            </div>
+            <div class="col-10 py-3" id="Box6">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly1">
+                        <p class="m-0 mb-1" id="Time1">00</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning1">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly1">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour1">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun1">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun1">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon1">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon1">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun1">
+                        <p class="fw-bold Ltemp" id="Temp1">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci1">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly2">
+                        <p class="m-0 mb-1" id="Time2">01</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning2">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly2">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour2"> 
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun2">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun2">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon2">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon2">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun2">
+                        <p class="fw-bold Ltemp" id="Temp2">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci2">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly3">
+                        <p class="m-0 mb-1" id="Time3">02</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning3">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly3">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour3">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun3">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun3">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon3">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon3">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun3">
+                        <p class="fw-bold Ltemp" id="Temp3">26&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci3">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly4">
+                        <p class="m-0 mb-1" id="Time4">03</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning4">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly4">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour4">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun4">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun4">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon4">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon4">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun4">
+                        <p class="fw-bold Ltemp" id="Temp4">25&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci4">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly5">
+                        <p class="m-0 mb-1" id="Time5">04</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning5">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly5">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour5">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun5">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun5">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon5">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon5">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun5">
+                        <p class="fw-bold Ltemp" id="Temp5">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci5">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 " id="Hourly6">
+                        <p class="m-0 mb-1" id="Time6">05</p>
+                        <!-- <img src="./Images/blue-clouds-and-yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning6">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly6">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour6">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun6">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun6">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon6">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon6">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun6">
+                        <p class="fw-bold Ltemp" id="Temp6">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci6">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly7">
+                        <p class="m-0 mb-1" id="Time7">06</p>
+                        <!-- <img src="./Images/blue-clouds-and-yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning7">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly7">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour7">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun7">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun7">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon7">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon7">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun7">
+                        <p class="fw-bold Ltemp" id="Temp7">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci7">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly8">
+                        <p class="m-0 mb-1" id="Time8">07</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning8">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly8">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour8">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun8">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun8">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon8">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon8">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun8">
+                        <p class="fw-bold Ltemp" id="Temp8">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci8">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly9">
+                        <p class="m-0 mb-1" id="Time9">08</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning9">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly9">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour9">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun9">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun9">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon9">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon9">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun9">
+                        <p class="fw-bold Ltemp" id="Temp9">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci9">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly10">
+                        <p class="m-0 mb-1" id="Time10">09</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning10">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly10">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour10">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun10">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun10">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon10">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon10">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun10">
+                        <p class="fw-bold Ltemp" id="Temp10">27&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci10">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly11">
+                        <p class="m-0 mb-1" id="Time11">10</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning11">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly11">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour11">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun11">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun11">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon11">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon11">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun11">
+                        <p class="fw-bold Ltemp" id="Temp11">35&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci11">1%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly12">
+                        <p class="m-0 mb-1" id="Time12">11</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning12">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly12">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour12">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun12">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun12">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon12">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon12">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun12">
+                        <p class="fw-bold Ltemp" id="Temp12">36&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci12">1%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly13">
+                        <p class="m-0 mb-1" id="Time13">12</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning13">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly13">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour13">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun13">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun13">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon13">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon13">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun13">
+                        <p class="fw-bold Ltemp" id="Temp13">38&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci13">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly14">
+                        <p class="m-0 mb-1" id="Time14">13</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning14">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly14">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour14">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun14">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun14">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon14">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon14">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun14">
+                        <p class="fw-bold Ltemp" id="Temp14">39&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci14">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly15">
+                        <p class="m-0 mb-1" id="Time15">14</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning15">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly15">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour15">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun15">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun15">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon15">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon15">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun15">
+                        <p class="fw-bold Ltemp" id="Temp15">40&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci15">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly16">
+                        <p class="m-0 mb-1" id="Time16">15</p>
+                        <!-- <img src="./Images/yellow-sun.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning16">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly16">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour16">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun16">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun16">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon16">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon16">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun16">
+                        <p class="fw-bold Ltemp" id="Temp16">41&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci16">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly17">
+                        <p class="m-0 mb-1" id="Time17">16</p>
+                        <!-- <img src="./Images/yellow-sun-and-blue-cloud.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning17">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly17">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour17">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun17">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun17">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon17">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon17">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun17">
+                        <p class="fw-bold Ltemp" id="Temp17">41&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci17">0%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly18">
+                        <p class="m-0 mb-1" id="Time18">17</p>
+                        <!-- <img src="./Images/yellow-sun-and-blue-cloud.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning18">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly18">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour18">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun18">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun18">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon18">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon18">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun18">
+                        <p class="fw-bold Ltemp" id="Temp18">41&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci18">1%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly19">
+                        <p class="m-0 mb-1" id="Time19">18</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning19">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly19">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour19">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun19">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun19">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon19">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon19">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun19">
+                        <p class="fw-bold Ltemp" id="Temp19">39&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci19">3%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly20">
+                        <p class="m-0 mb-1" id="Time20">19</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning20">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly20">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour20">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun20">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun20">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon20">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon20">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun20">
+                        <p class="fw-bold Ltemp" id="Temp20">37&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci20">3%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly21">
+                        <p class="m-0 mb-1" id="Time21">20</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning21">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly21">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour21">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun21">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun21">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon21">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon21">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun21">
+                        <p class="fw-bold Ltemp" id="Temp21">36&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci21">3%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly22">
+                        <p class="m-0 mb-1" id="Time22">21</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning22">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly22">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour22">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun22">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun22">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon22">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon22">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun22">
+                        <p class="fw-bold Ltemp" id="Temp22">35&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci22">3%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly23">
+                        <p class="m-0 mb-1" id="Time23">22</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning23">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly23">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour23">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun23">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun23">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon23">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon23">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun23">
+                        <p class="fw-bold Ltemp" id="Temp23">35&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci23">3%</span>
+                        </div>
+                    </div>
+                    <div class="col-1 text-center pt-2 HourlyC" id="Hourly24">
+                        <p class="m-0 mb-1" id="Time24">23</p>
+                        <!-- <img src="./Images/yellow-moon.png" width="35px"> -->
+                        <img class="cloudNlight" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="cloudNlightning24">
+                        <img class="cloudOnly" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudOnly24">
+                        <img class="downpourRain" src="./Images/downpour-rainy-day.png" width="35px" id="downpour24">
+                        <img class="yellowSun" src="./Images/yellow-sun.png" width="35px" id="yellowSun24">
+                        <img class="cloudySun" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="cloudySun24">
+                        <img class="blueMoon" src="./Images/moon-blue.png" width="35px" id="blueMoon24">
+                        <img class="clodyMoon" src="./Images/moon-and-cloudy-night-16537.png" width="35px" id="cloudyMoon24">
+                        <img class="oneCloudSun" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="oneCloudSun24">
+                        <p class="fw-bold Ltemp" id="Temp24">35&deg</p>
+                        <div class="d-flex mt-1 mb-2 justify-content-center">
+                            <img src="./Images/raindrop.png" width="15px" height="20px">
+                            <span id="Preci24">3%</span>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-10 mt-4 p-3" id="Box7">
+                <span class="fw-bold">15-DAYS WEATHER FORECAST</span>
+            </div>
+            <div class="col-10" id="Box8">
+                <div class="d-flex align-items-center py-3" style="position: relative;">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay0">TODAY</p>
+                        <p class="m-0 text-center EightDay_date" id="Date1">14/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot1">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny1">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold1">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining1">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm1">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud1">
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud1">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay1"> 
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi1">41&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo1">30&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info1" class="m-0 ms-5 pe-4 EightDay_day">Partly cloudy throughout the day with a chance of rain throughout the day</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain1">10%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box9">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay1">SAT</p>
+                        <p class="m-0 text-center EightDay_date" id="Date2">15/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot2">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny2">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold2">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining2">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm2">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud2"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud2">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay2">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi2">40&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo2">30&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info2" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain2">14%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box10">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay2">SUN</p>
+                        <p class="m-0 text-center EightDay_date" id="Date3">15/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot3">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny3">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold3">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining3">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm3">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud3"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud3">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay3">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi3">40&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo3">30&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info3" class="m-0 ms-5 pe-4 EightDay_day">Sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain3">9%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box11">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay3">MON</p>
+                        <p class="m-0 text-center EightDay_date" id="Date4">16/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot4">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny4">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold4">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining4">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm4">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud4"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud4">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay4">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi4">40&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo4">30&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info4" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain4">3%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box12">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay4">TUE</p>
+                        <p class="m-0 text-center EightDay_date" id="Date5">18/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot5">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny5">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold5">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining5">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm5">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud5"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud5">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay5">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi5">40&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo5">30&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info5" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain5">3%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box13">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay5">WED</p>
+                        <p class="m-0 text-center EightDay_date" id="Date6">19/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot6">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny6">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold6">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining6">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm6">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud6"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud6">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay6">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi6">40&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo6">30&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info6" class="m-0 ms-5 pe-4 EightDay_day">Very warm with lots of sun</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain6">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box14">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay6">THU</p>
+                        <p class="m-0 text-center EightDay_date" id="Date7">20/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot7">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny7">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold7">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining7">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm7">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud7"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud7">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay7">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi7">43&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo7">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info7" class="m-0 ms-5 pe-4 EightDay_day">Sunshine and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain7">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box15">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay7">FRI</p>
+                        <p class="m-0 text-center EightDay_date" id="Date8">21/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot8">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny8">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold8">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining8">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm8">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud8"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud8">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay8">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi8">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo8">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info8" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain8">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box16">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay8">SAT</p>
+                        <p class="m-0 text-center EightDay_date" id="Date9">22/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot9">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny9">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold9">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining9">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm9">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud9"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud9">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay9">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi9">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo9">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info9" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain9">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box17">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay9">SUN</p>
+                        <p class="m-0 text-center EightDay_date" id="Date10">23/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot10">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny10">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold10">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining10">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm10">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud10"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud10">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay10">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi10">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo10">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info10" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain10">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box18">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay10">MON</p>
+                        <p class="m-0 text-center EightDay_date" id="Date11">24/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot11">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny11">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold11">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining11">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm11">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud11"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud11">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay11">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi11">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo11">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info11" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain11">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box19">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay11">TUE</p>
+                        <p class="m-0 text-center EightDay_date" id="Date12">25/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot12">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny12">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold12">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining12">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm12">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud12"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud12">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay12">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi12">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo12">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info12" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain12">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box20">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay12">WED</p>
+                        <p class="m-0 text-center EightDay_date" id="Date13">26/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot13">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny13">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold13">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining13">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm13">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud13"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud13">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay13">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi13">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo13">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info13" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain13">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box21">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay13">FRI</p>
+                        <p class="m-0 text-center EightDay_date" id="Date14">27/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot14">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny14">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold14">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining14">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm14">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud14"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud14">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay14">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi14">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo14">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info14" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain14">1%</span>
+                </div>
+            </div>
+            <div class="col-10" id="Box22">
+                <div class="d-flex align-items-center py-4">
+                    <div class="col-2">
+                        <p class="m-0 text-center EightDay_today" id="EightDay14">SAT</p>
+                        <p class="m-0 text-center EightDay_date" id="Date15">22/06</p>
+                    </div>
+                    <img class="VeryHot" src="./Images/veryHot.png" width="35px" id="VeryHot15">
+                    <img class="Sunny" src="./Images/yellow-sun.png" width="35px" id="Sunny15">
+                    <img class="VeryCold" src="./Images/veryCold.png" width="35px" id="VeryCold15">
+                    <img class="Raining" src="./Images/downpour-rainy-day.png" width="35px" id="Raining15">
+                    <img class="Storm" src="./Images/cloud-and-yellow-lightning.png" width="35px" id="Storm15">
+                    <img class="SunNCloud" src="./Images/yellow-sun-and-blue-cloud.png" width="35px" id="SunNCloud15"> 
+                    <img class="SunNManyCloud" src="./Images/blue-clouds-and-yellow-sun.png" width="35px" id="SunNManyCloud15">
+                    <img class="cloudDay" src="./Images/blue-cloud-and-weather.png" width="35px" id="cloudDay15">
+                    <span class="ms-5 ps-1 EightDay_Hi" id="DateHi15">42&deg</span>
+                    <span class="mt-2 EightDay_Lo" id="DateLo15">27&deg</span>
+                    <div class="col-7 me-2">
+                        <p id="Info15" class="m-0 ms-5 pe-4 EightDay_day">Mostly sunny and very hot</p>
+                    </div>
+                    <img src="./Images/raindrop.png" width="20px" height="20px">
+                    <span class="EightDay_rain" id="DateRain15">1%</span>
+                </div>
+            </div>
+            <div class="col-10 d-flex justify-content-between mt-4 p-3" id="Box23">
+                <span class="fw-bold d-flex align-items-center">SUN</span>
+                <span id="sun">13 hrs 32 min</span>
+            </div>
+            <div class="col-10" id="Box24">
+                <div class="p-1 d-flex">
+                    <img src="./Images/sunrise-and-blue-sea.png" width="55px">
+                    <span class="mx-3 col-1 ps-4 d-flex align-items-center SunRiseSet">Rise</span>
+                    <span class="d-flex align-items-center" id="sunRise">05:54</span>
+                </div>
+                <hr class="m-0">
+                <div class="p-1 d-flex">
+                    <img src="./Images/sunset-and-blue-down-arrow.png" width="55px">
+                    <span class="mx-3 col-1 ps-4 d-flex align-items-center SunRiseSet">Set</span>
+                    <span class="d-flex align-items-center" id="sunSet">19:26</span>
+                </div>
+            </div>
+            <div class="col-10 d-flex justify-content-between mt-4 p-3" id="Box25">
+                <span class="fw-bold d-flex align-items-center">MOON</span>
+                <span id="PhaseInfo">Waning Gibbous</span>
+            </div>
+            <div class="col-10" id="Box26">
+                <div class="p-1 d-flex">
+                    <img src="./Images/MoonRise.png" width="55px">
+                    <span class="mx-3 col-1 ps-4 d-flex align-items-center MoonRiseSet">Rise</span>
+                    <span class="d-flex align-items-center" id="MoonRising">21:54</span>
+                </div>
+                <hr class="m-0">
+                <div class="p-1 d-flex">
+                    <img src="./Images/MoonSet.png" width="55px">
+                    <span class="mx-3 col-1 ps-4 d-flex align-items-center MoonRiseSet">Set</span>
+                    <span class="d-flex align-items-center" id="MoonSeting">06:45</span>
+                </div>
+            </div>
+            <div class="col-10 mt-4 p-3" id="Box27">
+                <span class="fw-bold d-flex align-items-center">AIR QUALITY</span>
+            </div>
+            <div class="col-10" id="Box28">
+                <div class="p-1 pt-3 d-flex justify-content-between">
+                    <div class="d-flex ms-2">
+                        <img src="./Images/AirQuality.png" width="25px">
+                        <span class="ps-3 d-flex align-items-center" id="AirQuality">Air Quality</span>
+                    </div>
+                    <div class="me-3">
+                        <span class="p-2 fw-bold" id="aqiInfo">Fair</span>
+                    </div>
+                </div>
+                <div class="p-1 pt-2 d-flex justify-content-between">
+                    <div class="d-flex ms-2" style="position: relative;">
+                        <img class="AqiMeter" src="./Images/AQI50.png" width="40px" id="Aqi1">
+                        <img class="AqiMeter" src="./Images/AQI100.png" width="40px" id="Aqi2">
+                        <img class="AqiMeter" src="./Images/AQI150.png" width="40px" id="Aqi3">
+                        <img class="AqiMeter" src="./Images/AQI200.png" width="40px" id="Aqi4">
+                        <img class="AqiMeter" src="./Images/AQI300.png" width="40px" id="Aqi5">  
+                        <img class="AqiMeter" src="./Images/AQI400.png" width="40px" id="Aqi6">
+                        <span class="d-flex align-items-center ms-5" id="AQI">AQI</span>
+                    </div>
+                    <div class="me-3">
+                        <span class="me-3 fw-bold" id="aqi">45</span>
+                    </div>
+                </div>
+                <div class="my-3 ms-3">
+                    <span id="aqiDescription">Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution.</span>
+                </div>
+                <hr class="m-0">
+                <div class="my-3">
+                    <span class="d-flex justify-content-center">MAJOR POLLUTANTS</span>
+                    <hr class="col-2 mx-auto m-0" id="HorizontalLine">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-3">
+                            <div class="mt-3">
+                                <div>
+                                    <img class="ms-3" src="./Images/PM2.5.png" width="45px">
+                                </div>
+                                <div class="d-flex">
+                                    <span id="PM25val">29</span>
+                                    <span id="PM25">&nbsp(PM2.5)</span>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <div>
+                                    <img class="ms-3" src="./Images/CarbonMonoxideNew.png" width="40px">
+                                </div>
+                                <div class="d-flex">
+                                    <span id="COval">199</span>
+                                    <span id="CO">&nbsp(CO)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-center">
+                                    <img class="ms-3" src="./Images/PM10.png" width="45px">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <span id="PM10val">40</span>
+                                    <span id="PM10">&nbsp(PM10)</span>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <div class="d-flex justify-content-center">
+                                    <img class="ms-2" src="./Images/OzoneNew.png" width="45px">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <span id="O3val">65</span>
+                                    <span id="O3">&nbsp(Ozone)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-end">
+                                    <img class="me-1" src="./Images/SulphurDioxideNew.png" width="40px">
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <span id="SO2val">5</span>
+                                    <span id="SO2">&nbsp(SO2)</span>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <div class="d-flex justify-content-end">
+                                    <img class="me-1" src="./Images/NitrogenDioxideNew.png" width="40px">
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <span id="NO2val">9</span>
+                                    <span id="NO2">&nbsp(NO2)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- <script src="./JS Folder/script.js"></script> -->
+     <script>
+        const body = document.getElementById("body");
+        const row1 = document.getElementById("row1");
+        const outputElement = document.getElementById("outputElement");
+        const sunRise = document.getElementById("sunRise");
+        const sunSet = document.getElementById("sunSet");
+        const sun = document.getElementById("sun");
+        const windDirection = document.getElementById("windDirection");
+        const locations = document.getElementById("location");
+        const MoonRising = document.getElementById("MoonRising");
+        const MoonSeting = document.getElementById("MoonSeting");
+        const PhaseInfo = document.getElementById("PhaseInfo");
+        const aqi = document.getElementById("aqi");
+        const aqiInfo = document.getElementById("aqiInfo");
+        const aqiPara = document.getElementById("aqiPara");
+        const PresentTime = document.getElementById("PresentTime");
+        const DayNDate = document.getElementById("DayNDate");
+        const aqiDescription = document.getElementById("aqiDescription");
+        const PM25val = document.getElementById("PM25val");
+        const COval = document.getElementById("COval");
+        const PM10val = document.getElementById("PM10val");
+        const O3val = document.getElementById("O3val");
+        const SO2val = document.getElementById("SO2val");
+        const NO2val = document.getElementById("NO2val");
+        const PresentCity = document.getElementById("PresentCity");
+        const currentWeatherSun = document.getElementById("currentWeatherSun");
+        const content = document.getElementById("content");
+        const HeadBg = document.getElementById("HeadBg");
+        const Search = document.getElementById("Search");
+        const Title = document.getElementById("Title");
+        const ContainAll = document.getElementById("ContainAll");
+        const errorBtn = document.getElementById("errorBtn");
+        const NewRing = document.getElementById("NewRing");
+       
+        // show icons
+
+        function show_icons(input_var,max_icons) {
+            const data = []
+            for(let i = 1; i < max_icons; i++) {
+                data.push(document.getElementById(`${input_var}${i}`));
+            }
+            // console.log("DATA----------------",data)
+            return data
+        }
+
+
+        // const TotalPara = [];
+        // for(let i = 1; i < 15; i++) {
+        //     TotalPara.push(document.getElementById(`Para${i}`));
+        // }
+        const TotalPara = show_icons("Para",15)
+
+        // const CurrentWeatherIcons = [];                                                      // Current Weather Icons
+        // for(let i = 1; i < 7; i++) {
+        //     CurrentWeatherIcons.push(document.getElementById(`currentWeatherIcon${i}`));
+        // }
+        const CurrentWeatherIcons = show_icons("currentWeatherIcon",7)
+
+        // const TotalCloudNLight = [];                                                         // Cloud N Yellow Lightning Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalCloudNLight.push(document.getElementById(`cloudNlightning${i}`));
+        // }
+        const TotalCloudNLight = show_icons("cloudNlightning",25)
+
+        // const TotalCloudOnly = [];                                                           // Cloud Only Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalCloudOnly.push(document.getElementById(`cloudOnly${i}`));
+        // }
+        const TotalCloudOnly = show_icons("cloudOnly",25)
+
+        // const TotalDownpour = [];                                                            // Rainy Cloud Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalDownpour.push(document.getElementById(`downpour${i}`));
+        // }
+        const TotalDownpour = show_icons("downpour",25)
+
+        // const TotalSun = [];                                                                 // Yellow Sun Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalSun.push(document.getElementById(`yellowSun${i}`));
+        // }
+        const TotalSun = show_icons("yellowSun",25)
+
+        // const TotalCloudySun = [];                                                           // Sun with Cloud Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalCloudySun.push(document.getElementById(`cloudySun${i}`));
+        // }
+        const TotalCloudySun = show_icons("cloudySun",25)
+
+        // const TotalBlueMoon = [];                                                            // Blue Moon Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalBlueMoon.push(document.getElementById(`blueMoon${i}`));
+        // }
+        const TotalBlueMoon = show_icons("blueMoon",25)
+
+        // const TotalCloudyMoon = [];                                                          // Cloudy Moon Icons (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalCloudyMoon.push(document.getElementById(`cloudyMoon${i}`));
+        // }
+        const TotalCloudyMoon = show_icons("cloudyMoon",25)
+
+        // const TotalOneCloudSun = [];                                                         // One Cloud with Sun (24-hour)
+        // for(let i = 1; i < 25; i++) {
+        //     TotalOneCloudSun.push(document.getElementById(`oneCloudSun${i}`));
+        // }
+        const TotalOneCloudSun = show_icons("oneCloudSun",25)
+
+        // const TotalVeryHot = [];                                                             // Very Hot Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalVeryHot.push(document.getElementById(`VeryHot${i}`));
+        // }
+        const TotalVeryHot = show_icons("VeryHot",16)
+
+        // const TotalSunny = [];                                                               // Yellow Sun Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalSunny.push(document.getElementById(`Sunny${i}`));
+        // }
+        const TotalSunny = show_icons("Sunny",16)
+
+        // const TotalVeryCold = [];                                                            // Very Cold Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalVeryCold.push(document.getElementById(`VeryCold${i}`));
+        // }
+        const TotalVeryCold = show_icons("VeryCold",16)
+
+        // const TotalRaining = [];                                                             // Rainy Cloud Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalRaining.push(document.getElementById(`Raining${i}`));
+        // }
+        const TotalRaining = show_icons("Raining",16)
+
+        // const TotalStorm = [];                                                               // Cloud N Yellow Lightning Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalStorm.push(document.getElementById(`Storm${i}`));
+        // }
+        const TotalStorm = show_icons("Storm",16)
+
+        // const TotalSunNCloud = [];                                                           // Sun with Cloud Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalSunNCloud.push(document.getElementById(`SunNCloud${i}`));
+        // }
+        const TotalSunNCloud = show_icons("SunNCloud",16)
+
+        // const TotalSunNManyCloud = [];                                                       // Sun with Many Clouds Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalSunNManyCloud.push(document.getElementById(`SunNManyCloud${i}`));
+        // }
+        const TotalSunNManyCloud = show_icons("SunNManyCloud",16)
+
+        // const TotalCloudyDay = [];                                                           // Cloud Only Icons (15-day)
+        // for(let i = 1; i < 16; i++) {
+        //     TotalCloudyDay.push(document.getElementById(`cloudDay${i}`));
+        // }
+        const TotalCloudyDay = show_icons("cloudDay",16)
+
+        // const TotalAqi = [];                                                                 // Aqi-Meter Icons
+        // for(let i = 1; i < 7; i++) {
+        //     TotalAqi.push(document.getElementById(`Aqi${i}`));
+        // }
+        const TotalAqi = show_icons("Aqi",7)
+
+        // const TotalDays = [];                                                                // WeekDays (15-day)
+        // for(let i = 1; i < 15; i++) {
+        //     TotalDays.push(document.getElementById(`EightDay${i}`));
+        // } 
+        const TotalDays = show_icons("EightDay",15)
+ 
+        // const TotalBoxes = [];
+        // for(let i = 1; i < 31; i++) {
+        //     TotalBoxes.push(document.getElementById(`Box${i}`));           
+        // }
+        const TotalBoxes = show_icons("Box",31)
+
+        // const TotalHr = [];
+        // for(let i = 1; i < 25; i++) {
+        //     TotalHr.push(document.getElementById(`Hourly${i}`));
+        // }
+        const TotalHr = show_icons("Hourly",25)
+
+        // const TotalDates = []; 
+        // for(let i = 1; i <= 15; i++) {
+        //   TotalDates.push(document.getElementById(`Date${i}`));
+        // }
+        const TotalDates = show_icons("Date",16)
+
+        // const TotalDatesHi = [];
+        // for(let i = 1; i <= 15; i++) {
+        //   TotalDatesHi.push(document.getElementById(`DateHi${i}`));
+        // }
+        const TotalDatesHi = show_icons("DateHi",16)
+        
+        // const TotalDatesLo = [];
+        // for(let i = 1; i <= 15; i++) {
+        //   TotalDatesLo.push(document.getElementById(`Date${i}Lo`));
+        // }
+        const TotalDatesLo = show_icons("DateLo",16)
+        
+        // const TotalInfo = [];
+        // for(let i = 1; i <= 15; i++) {
+        //   TotalInfo.push(document.getElementById(`Info${i}`));
+        // }
+        const TotalInfo = show_icons("Info",16)
+       
+        // const TotalRain = [];
+        // for(let i = 1; i <= 15; i++) {
+        //   TotalRain.push(document.getElementById(`Date${i}Rain`));
+        // }
+        const TotalRain = show_icons("DateRain",16)
+        
+        // const TotalTime = [];
+        // for(let i = 1; i <= 24; i++) {
+        //   TotalTime.push(document.getElementById(`Time${i}`));
+        // }
+        const TotalTime = show_icons("Time",25)
+
+        // const TotalTemp = [];
+        // for(let i = 1; i <= 24; i++) {
+        //   TotalTemp.push(document.getElementById(`Temp${i}`));
+        // }
+        const TotalTemp = show_icons("Temp",25)
+        
+        // const TotalPreci = [];
+        // for(let i = 1; i <= 24; i++) {
+        //   TotalPreci.push(document.getElementById(`Preci${i}`));
+        // }
+        const TotalPreci = show_icons("Preci",25)
+        
+        const CountryCityUrl = 'https://countriesnow.space/api/v0.1/countries';
+        
+        var Dynamic = document.getElementById("Dynamic");
+        var DynamicCities = document.getElementById("DynamicCities"); 
+        let globalData;
+        let globalCountryId;
+        let globalCity;
+        let globalLatitude;
+        let globalLongitude;
+        let globalPM10;
+        let globalPM25;
+        let globalCO;
+        let globalO3;
+        let globalSO2;
+        let globalNO2;
+        let globalCountry;
+        let globalHr;
+        let globalMin;
+        let globalSunRiseHr;
+        let globalSunRiseMin;
+        let globalSunSetHr;
+        let globalSunSetMin;
+        let globalPreci;
+        let globalCloud;
+        let globalMoonRiseHr;
+        let globalMoonRiseMin;
+        let globalMoonSetHr;
+        let globalMoonSetMin;
+        const HourCloudCover = [];   
+        const HourPreci = [];
+        const HourPreciPercent = []; 
+
+        function showList() {
+            select.classList.toggle('show');
+        }
+
+        $(document).ready(function() {                     //Initialize select2 for Country
+            $('.SearchCountry').select2({   
+                placeholder: 'Search Country'
+          });
+        });
+
+        $(document).ready(function() {                     //Initialize select2 for City
+            $('.SearchCity').select2({   
+                placeholder: 'Search City'
+          });
+        });
+
+        fetch(CountryCityUrl)                              //Fetch Country Data
+          .then(response => {
+            if (!response.ok) {
+              if (response.status === 404) {
+                throw new Error('Data not found');
+              } else if (response.status === 500) {
+                throw new Error('Server error');
+              } else {
+                throw new Error('Network response was not ok');
+              }
+            }
+            return response.json();
+          })
+          .then(data => {
+            globalData = data;
+            const CountryNames = data.data.map(countryData => countryData.country);
+          
+            for (var i =0; i < CountryNames.length; i++ ) {
+                var option = document.createElement("option");
+                option.value = CountryNames[i];
+                option.text = CountryNames[i];
+                Dynamic.appendChild(option);
+            }
+          })
+          
+          .catch(error => {
+            console.error('Error:', error);
+          });
+
+          $(Dynamic).on('change', function() {     
+            globalCountry = Dynamic.value;
+            const selectedCountry = globalData.data.find(country => country.country == globalCountry);
+          
+            DynamicCities.innerHTML = "";
+
+            if(selectedCountry) {
+              const cities = selectedCountry.cities;
+              globalCountryId= selectedCountry.iso2;
+              
+              for (var i = 0; i < cities.length; i++) {
+                var option = document.createElement("option");
+                option.value = cities[i];
+                option.text = cities[i];DateLo15
+                DynamicCities.appendChild(option);
+              }
+
+              $(DynamicCities).on('change', function() {
+              globalCity = DynamicCities.value;
+              WeatherInfo();
+              MoonPhase();
+              for(let i = 0; i < TotalBoxes.length; i++) {
+                TotalBoxes[i].style.filter = "blur(10px)";
+              }
+              setTimeout(() => {
+                NewRing.style.display = "block";
+              }, 0);
+            })
+            }
+        });
+
+            function WeatherInfo() {                      //Fetch Weather Data
+              const WeatherApi = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${globalCity},${globalCountryId}?key=TGEMXMJDH3CFS6VZRKP3HP4ZZ`;
+
+              fetch(WeatherApi)
+              .then(response => {
+                if (!response.ok) {
+                //   throw new Error('Network response was not ok');
+                NewRing.style.display = "none";
+                  body.style.overflow = "hidden";
+                  for(let i = 0; i < TotalBoxes.length; i++) {
+                  TotalBoxes[i].style.filter = "blur(0px)";
+                 }
+                 for(let i = 0; i < TotalPara.length; i++) {
+                    TotalPara[i].innerHTML = "- -";
+                 }
+                 TotalPara[5].innerHTML = "!!!  Weather data for this city is not available.";
+                 TotalPara[5].style.color = "red";
+                 TotalPara[9].style.color = "black";
+                 currentWeatherSun.style.visibility = "hidden";
+                 PresentCity.innerHTML = "- -";
+                 for(let i = 0; i < CurrentWeatherIcons.length; i++) {
+                    CurrentWeatherIcons[i].style.display = "none";
+                 }
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log(data);
+                const days = data.days;
+                for(let i = 0; i < TotalBoxes.length; i++) {
+                TotalBoxes[i].style.filter = "blur(0px)";
+              }
+              NewRing.style.display = "none";
+              body.style.overflow = "auto";
+
+                // 15-day forecast
+                const DayMax = [];
+                for (let i = 0; i < 15; i++) {
+                  DayMax.push(Math.round((days[i].tempmax - "32") * 5/9));
+                }
+
+                const DayMin = [];
+                for (let i = 0; i < 15; i++) {
+                  DayMin.push(Math.round((days[i].tempmin - "32") * 5/9));
+                }
+
+                const Dates = [];
+                for (let i = 0; i < 15; i++) {
+                  Dates.push(days[i].datetime.substring(8,10) + "/" + days[i].datetime.substring(5,7));
+                }
+
+                const Descriptions = [];
+                for (let i = 0; i < 15; i++) {
+                  Descriptions.push(days[i].description);
+                }
+
+                const Precipitations = [];
+                for (let i = 0; i < 15; i++) {
+                  Precipitations.push(Math.round(days[i].precipprob));
+                }
+
+                // 24-hour forecast
+                const Hourss = [];
+                for ( let i = 0; i < 24; i++) {
+                  Hourss.push(days[0].hours[i].datetime.substring(0,2));
+                }
+                
+                const HourlyTemperature = [];
+                for (let i = 0; i < 24; i++) {
+                  HourlyTemperature.push(Math.round((days[0].hours[i].temp - "32") * 5/9));
+                }
+
+                const HourlyPrecipation = [];
+                for (let i = 0; i < 24; i++) {
+                  HourlyPrecipation.push(Math.round(days[0].hours[i].precipprob));
+                }
+
+                const WeekDates = [];
+                for (let i = 1; i < 15; i++) {
+                    WeekDates.push(new Date(data.days[i].datetime));
+                }
+
+                const DaysCloudCover = [];                                         // 15-PerDay Avg Cloudcover Data
+                for(let i = 0; i < 15; i++) {
+                    DaysCloudCover.push(Math.round(data.days[i].cloudcover));
+                }
+
+                const DaysPreci = [];                                              // 15-PerDay Avg Precipitation Amount Data
+                for(let i = 0; i < 15; i++) {
+                    DaysPreci.push(data.days[i].precip);
+                }
+               
+                const DaysTemp = [];                                               // 15-PerDay Avg Temp Data
+                for(let i = 0; i < 15; i++) {
+                    DaysTemp.push(Math.round(data.days[i].temp));
+                }
+
+                const DaysPreciPrecent = [];                                       // 15-PerDay Avg Precipitation Percentage
+                for(let i = 0; i < 15; i++) {
+                    DaysPreciPrecent.push(data.days[i].precipprob);
+                }
+
+                for(let i = 0; i < 24; i++) {                                             // 24-PerHour Avg Cloudcover Data
+                    HourCloudCover.push(Math.round(data.days[0].hours[i].cloudcover));
+                }
+                
+                for(let i = 0; i < 24; i++) {                                             // 24-PerHour Avg Precipitation Amount Data
+                    HourPreci.push(data.days[0].hours[i].precip);
+                }
+                
+                for(let i = 0; i < 24; i++) {                                             // 24-PerHour Avg Precipitation Percentage
+                    HourPreciPercent.push(Math.round(data.days[0].hours[i].precipprob));
+                }
+               
+                const Hourly0 = days[1].hours[0].datetime.substring(0,2);
+                const HourlyTemp0 = Math.round((days[1].hours[0].temp - "32") * 5/9);
+                const HourlyPreci0 = Math.round(days[1].hours[0].precipprob);
+                const FeelLike = Math.round((data.currentConditions.feelslike - "32") * (5/9));
+                const standardTemp = Math.round((data.currentConditions.temp - "32") * (5/9));
+                const Humid = Math.round(data.currentConditions.humidity);
+                const Pr = Math.round(data.currentConditions.pressure);
+                const myRise = data.currentConditions.sunrise.substring(0,5); 
+                globalSunRiseHr = data.currentConditions.sunrise.substring(0,2);
+                globalSunRiseMin = data.currentConditions.sunrise.substring(3,5);
+                const TotalRMin = (+globalSunRiseHr) * 60 + (+globalSunRiseMin);  
+                const mySet = data.currentConditions.sunset.substring(0,5);
+                globalSunSetHr = data.currentConditions.sunset.substring(0,2);
+                globalSunSetMin = data.currentConditions.sunset.substring(3,5);  
+                const TotalSMin = (+globalSunSetHr) * 60 +  (+globalSunSetMin); 
+                const TotalMin = TotalSMin - TotalRMin;
+                var hours = (TotalMin / 60);      
+                var rhours = Math.floor(hours);   
+                var minutes = (hours - rhours) * 60;    
+                var rminutes = Math.round(minutes);
+                const standardWind = Math.round(data.currentConditions.windspeed * "1.609");
+                const visibility = data.currentConditions.visibility;
+                const standardVisibility = Math.round(visibility * "1.609");
+                globalCloud = Math.round(data.currentConditions.cloudcover);
+                const Dew = Math.round((days[0].dew - "32") * 5/9);
+                const direction = data.currentConditions.winddir;
+                const AheadDescription = data.description;
+                const Address = data.resolvedAddress.split(", ")
+                const AddressCity = Address[0];
+                const AddressState = Address[1];
+                globalLatitude = data.latitude;
+                globalLongitude = data.longitude;
+                globalPreci = data.currentConditions.precip;
+                const CurrentPreci = data.currentConditions.precipprob;
+              
+                AirQualityInfo();
+                AirQualityInfo1();
+                CurrentTime();
+                let windDirection;
+
+                if (direction > 11 && direction <= 33) {
+                  windDirection = "NNE";
+                } else if (direction > 33 && direction <= 56) {
+                  windDirection = "NE";
+                } else if (direction > 56 && direction <= 79) {
+                  windDirection = "ENE";
+                } else if (direction > 79 && direction <= 101) {
+                  windDirection = "E";
+                } else if (direction > 101 && direction <= 124) {
+                  windDirection = "ESE";
+                } else if (direction > 124 && direction <= 147) {
+                  windDirection = "SE";
+                } else if (direction >147 && direction <= 169) {
+                  windDirection = "SSE";
+                } else if (direction > 169 && direction <= 191) {
+                  windDirection = "S";
+                } else if (direction > 191 && direction <= 214) {
+                  windDirection = "SSW";
+                } else if (direction > 214 && direction <= 236) {
+                  windDirection = "SW";
+                } else if (direction > 236 && direction <= 259) {
+                  windDirection = "WSW";
+                } else if (direction > 259 && direction <= 281) {
+                  windDirection = "W";
+                } else if (direction > 281 && direction <= 304) {
+                  windDirection = "WNW";
+                } else if (direction > 304 && direction <= 326) {
+                  windDirection = "NW";
+                } else if (direction > 326 && direction <= 349) {
+                  windDirection = "NNW";
+                } else if (direction > 349 && direction <= 11) {
+                  windDirection = "N";
+                }
+
+                TotalPara[0].innerHTML = DayMax[0];
+                TotalPara[1].innerHTML = DayMin[0];
+                TotalPara[4].innerHTML = "RealFeel " + FeelLike + "&deg";
+                sunRise.innerHTML = myRise;
+                sunSet.innerHTML = mySet;
+                sun.innerHTML = rhours + " hrs " + rminutes + " mins";
+                TotalPara[3].innerHTML = standardTemp + "&deg"; 
+                TotalPara[6].innerHTML = Humid + " %";
+                TotalPara[8].innerHTML = Pr + " mbar";
+                TotalPara[7].innerHTML = windDirection + " " + standardWind + " km/h";
+                TotalPara[11].innerHTML = standardVisibility + " km";
+                TotalPara[12].innerHTML = globalCloud + " %";
+                TotalPara[10].innerHTML = Dew + "&degC";
+                TotalPara[5].innerHTML = Descriptions[0];
+                TotalPara[5].style.color = "black";
+                TotalPara[13].innerHTML = AheadDescription;
+
+                for(let i = 0; i < 14; i++) {
+                    TotalDays[i].innerHTML = WeekDates[i].toString().substring(0,3).toUpperCase();
+                }
+                
+                for(let i = 0; i < Dates.length; i++) {
+                    console.log(TotalDates[i]);
+                    console.log(Dates[i]);
+                  TotalDates[i].innerHTML = Dates[i];
+                  TotalDatesHi[i].innerHTML = DayMax[i] + "&deg";
+                  TotalDatesLo[i].innerHTML = DayMin[i] + "&deg";
+                  TotalInfo[i].innerHTML = Descriptions[i];
+                  TotalRain[i].innerHTML = Precipitations[i] + "%";
+                }
+
+                for(let i = 0; i < 24; i++) {
+                  TotalTime[i].innerHTML = Hourss[i];
+                  TotalTemp[i].innerHTML = HourlyTemperature[i] + "&deg";
+                  TotalPreci[i].innerHTML = HourlyPrecipation[i] + "%";
+                }
+
+                if (AddressState == undefined) {
+                    PresentCity.innerHTML = AddressCity + ", " + standardTemp + "&degC";    
+                } else {
+                    PresentCity.innerHTML = AddressCity + ", " + AddressState + " " + standardTemp + "&degC";
+                }
+                
+
+                for(let i = 0; i < 15; i++) {
+                    if (DaysTemp[i] > 104) {
+                        TotalSunny[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalVeryHot[i].style.display = "block";
+                    } else if (DaysTemp[i] < 32) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalSunny[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "block";
+                    } else if ((DaysCloudCover[i] >= 60) && (DaysPreci[i] > 0.2 && DaysPreci[i] < 0.4) && (DaysPreciPrecent[i] > 50)) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalSunny[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalStorm[i].style.display = "block";
+                    } else if ((DaysCloudCover[i] > 50) && (DaysPreci[i] >= 0.4)) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalSunny[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalRaining[i].style.display = "block";
+                    } else if ((DaysCloudCover[i] < 25) && (DaysPreci[i] < 0.001) && (DaysPreciPrecent[i] < 25) && (DaysTemp[i] <= 104 && DaysTemp[i] > 50 )) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalSunny[i].style.display = "block";
+                    } else if ((DaysCloudCover[i] > 25 && DaysCloudCover[i] <= 60) && (DaysPreci[i] < 0.1 || DaysPreci[i] == undefined || DaysPreci[i] == null) && (DaysTemp[i] <= 104)) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalSunny[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "block";
+                    } else if ((DaysCloudCover[i] > 60) && ((DaysPreci[i] < 0.1) || (DaysPreci[i] == null) || (DaysPreci[i] == undefined)) && (DaysTemp[i] <= 104)) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalSunny[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "block";
+                    } else if ((((DaysCloudCover[i] > 40) && (DaysPreciPrecent[i] > 40))  || (DaysCloudCover[i] >= 90)) && (DaysPreci[i] < 0.4)) {
+                        TotalVeryHot[i].style.display = "none";
+                        TotalVeryCold[i].style.display = "none";
+                        TotalStorm[i].style.display = "none";
+                        TotalRaining[i].style.display = "none";
+                        TotalSunny[i].style.display = "none";
+                        TotalSunNCloud[i].style.display = "none";
+                        TotalSunNManyCloud[i].style.display = "none";
+                        TotalCloudyDay[i].style.display = "block";
+                    }
+                }
+                // for (let i = 0; i < 15; i++) {
+                //     console.log(`DaysTemp${i}`,DaysTemp[i]);
+                //     console.log(`DaysCloudCover${i}`,DaysCloudCover[i]);
+                //     console.log(`DaysPreci${i}`,DaysPreci[i]);
+                //     console.log(`DaysPreciPrecent${i}`,DaysPreciPrecent[i]);
+                //     console.log("----------------------------------");
+                // }
+
+                HeadBg.style.transform = "translate(0px,0px)";
+                // HeadBg.style.backgroundColor = "rgb(22, 21, 21)";
+                Search.style.transform = "translate(0px,0px)";
+                // Search.style.backgroundImage = "rgb(22, 21, 21)";
+                // Title.style.backgroundColor = "rgb(22, 21, 21)";
+                // ContainAll.style.backgroundImage = "url(./Images/HeadingBg.jpg)";
+                content.style.display = "block";
+
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+            }
+
+            function AirQualityInfo() {                    //Fetch Air Pollution Data
+              const apiUrl = `https://api.weatherbit.io/v2.0/current/airquality?lat=${globalLatitude}&lon=${globalLongitude}&key=9aed60476c234f40a451296a85b9c6a8`;
+
+              fetch(apiUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  globalCO = Math.round(data.data[0].co);
+                  globalO3 = data.data[0].o3;
+                  globalPM10 = data.data[0].pm10;
+                  globalPM25 = data.data[0].pm25; 
+                  const AirQuality = data.data[0].aqi;
+
+                  COval.innerHTML = globalCO;
+                  O3val.innerHTML = globalO3;
+                  PM10val.innerHTML = globalPM10
+                  PM25val.innerHTML = globalPM25;
+                  aqi.innerHTML = AirQuality;
+                // start 
+                        // function test(content,bg_clg,para_cnt,para_style,descri,meter){
+                        //     aqiInfo.innerHTML = content;
+                        //     aqiInfo.style.borderColor = bg_clg;
+                        //     TotalPara[9].innerHTML = para_cnt;
+                        //     TotalPara[9].style.color = para_style;
+                        //     aqiDescription.innerHTML = descri;
+                        //     AqiMeter(meter);
+                        // }
+                // end
+                  if (AirQuality >= 0 && AirQuality <= 19) {
+                    // test("Excellent","rgb(6, 206, 206)","Excellent","rgb(6, 206, 206)","The air quality is ideal for most individuals, enjoy your normal outdoor activities.",0)
+                    aqiInfo.innerHTML = "Excellent";
+                    aqiInfo.style.borderColor = "rgb(6, 206, 206)";
+                    TotalPara[9].innerHTML = "Excellent";
+                    TotalPara[9].style.color = "rgb(6, 206, 206)";
+                    aqiDescription.innerHTML = "The air quality is ideal for most individuals, enjoy your normal outdoor activities.";
+                    AqiMeter(0);
+                   } else if (AirQuality >= 20 && AirQuality <= 50) {
+                    aqiInfo.innerHTML = "Fair";
+                    aqiInfo.style.borderColor = "rgb(14, 231, 14)";
+                    TotalPara[9].innerHTML = "Fair";
+                    TotalPara[9].style.color = "rgb(14, 231, 14)";
+                    aqiDescription.innerHTML = "Air quality is satisfactory, and air pollution poses little or no risk.";
+                    AqiMeter(0);
+                   } else if (AirQuality >= 51 && AirQuality <= 100) {
+                    aqiInfo.innerHTML = "Moderate";
+                    aqiInfo.style.borderColor = "rgb(225, 238, 44)";
+                    TotalPara[9].innerHTML = "Moderate";
+                    TotalPara[9].style.color = "rgb(225, 238, 44)";
+                    aqiDescription.innerHTML = "Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution.";
+                    AqiMeter(1);
+                   } else if (AirQuality >= 101 && AirQuality <= 150) {
+                    aqiInfo.innerHTML = "Unhealthy for Sensitive Groups";
+                    aqiInfo.style.borderColor = "rgb(255, 112, 16)";
+                    TotalPara[9].innerHTML = "Unhealthy for Sensitive Groups";
+                    TotalPara[9].style.color = "rgb(255, 112, 16)";
+                    aqiDescription.innerHTML = "Members of sensitive groups may experience health effects. The general public is less likely to be affected.";
+                    AqiMeter(2);
+                   } else if (AirQuality >= 151 && AirQuality <= 200) {
+                    aqiInfo.innerHTML = "Unhealthy";
+                    aqiInfo.style.borderColor = "rgb(255, 16, 16)";
+                    TotalPara[9].innerHTML = "Unhealthy";
+                    TotalPara[9].style.color = "rgb(255, 16, 16)";
+                    aqiDescription.innerHTML = "Some members of the general public may experience health effects, members of sensitive groups may experience more serious health effects.";
+                    AqiMeter(3);
+                   } else if (AirQuality >= 201 && AirQuality <= 300) {
+                    aqiInfo.innerHTML = "Very Unhealthy";
+                    aqiInfo.style.borderColor = "rgb(169, 29, 58)";
+                    TotalPara[9].innerHTML = "Very Unhealthy";
+                    TotalPara[9].style.color = "rgb(169, 29, 58)";
+                    aqiDescription.innerHTML = "Health alert: The risk of health effects is increased for everyone.";
+                    AqiMeter(4);
+                   } else if (AirQuality >= 301) {
+                    aqiInfo.innerHTML = "Hazardous";
+                    aqiInfo.style.borderColor = "rgb(83, 2, 2)";
+                    TotalPara[9].innerHTML = "Hazardous";
+                    TotalPara[9].style.color = "rgb(83, 2, 2)";
+                    aqiDescription.innerHTML = "Health warning of emergency conditions: Everyone is more likely to be affected.";
+                    AqiMeter(5);
+                   }
+
+                   function AqiMeter(index) {
+                        TotalAqi[index].style.display = "block";
+
+                        for (let i = 0; i < TotalAqi.length; i++) {
+                            if (i != index) {
+                                TotalAqi[i].style.display = "none";
+                            }
+                        }
+                   }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+            }
+
+            function AirQualityInfo1() {                   //Fetch Air Pollution Pollutants Data 
+              const apiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${globalLatitude}&longitude=${globalLongitude}&current=nitrogen_dioxide,sulphur_dioxide`;
+
+              fetch(apiUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  globalNO2 = Math.round(data.current.nitrogen_dioxide);
+                  globalSO2 = Math.round(data.current.sulphur_dioxide);
+
+                  NO2val.innerHTML = globalNO2;
+                  SO2val.innerHTML = globalSO2;
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+             }
+            
+             function MoonPhase() {                         //Fetch Moon Data
+              const apiUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${globalCity},${globalCountryId}?unitGroup=us&key=TGEMXMJDH3CFS6VZRKP3HP4ZZ&include=days&elements=datetime,moonphase,sunrise,sunset,moonrise,moonset`;
+
+              fetch(apiUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                 const MoonRise = data.days[0].moonrise.substring(0,5); 
+                 globalMoonRiseHr = MoonRise.substring(0,2);
+                 globalMoonRiseMin = MoonRise.substring(3,5);
+                 const MoonSet = data.days[0].moonset.substring(0,5);
+                 globalMoonSetHr = MoonSet.substring(0,2);
+                 globalMoonSetMin = MoonSet.substring(3,5);
+                if (data.days[0].moonrise == undefined) {
+                    MoonRising.innerHTML = "&nbsp&nbsp&nbsp&nbsp--" ;
+                  } else if (data.days[0].moonrise != undefined) {
+                    MoonRising.innerHTML = MoonRise;
+                  }
+                  MoonSeting.innerHTML = MoonSet;
+                  const moonPhase = data.days[0].moonphase;
+                  if (moonPhase == 0) {
+                    PhaseInfo.innerHTML = "New Moon";
+                  } else if (moonPhase > 0 && moonPhase < 0.25) {
+                    PhaseInfo.innerHTML = "Waxing Crescent";
+                  } else if (moonPhase == 0.25) {
+                    PhaseInfo.innerHTML = "First Quarter";
+                  } else if (moonPhase > 0.25 && moonPhase < 0.5) {
+                    PhaseInfo.innerHTML = "Waxing Gibbous";
+                  } else if (moonPhase == 0.5) {
+                    PhaseInfo.innerHTML = "Full Moon";
+                  } else if (moonPhase > 0.5 && moonPhase < 0.75) {
+                    PhaseInfo.innerHTML = "Waning Gibbous";
+                  } else if (moonPhase == 0.75) {
+                    PhaseInfo.innerHTML = "Last Quarter";
+                  } else if (moonPhase > 0.75 && moonPhase <= 1) {
+                    PhaseInfo.innerHTML = "Waning Crescent";
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+             }
+
+             function CurrentTime() {                       //Fetch Current Date and Time
+              const apiUrl = `https://api.ipgeolocation.io/timezone?apiKey=4f23a4b6279643c1a8e4b22f3685d95c&lat=${globalLatitude}&long=${globalLongitude}`
+
+              let timeHr;
+
+              fetch(apiUrl)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  const time = (data.time_24.substring(0,5));
+                  globalHr = data.time_24.substring(0,2);
+                  globalMin = data.time_24.substring(3,5);
+                  const day = data.date_time_wti.substring(0,3).toUpperCase();
+                  const date = data.date_time_wti.substring(5,7).toUpperCase();
+                  const month = data.date_time_wti.substring(8,11).toUpperCase();
+                  if (data.time_24.substring(0,1) == 0) {
+                    timeHr = (data.time_24.substring(1,2));  
+                  } else {
+                    timeHr = (data.time_24.substring(0,2));
+                  }
+
+                  DayNDate.innerHTML = day + "," + " " + month + " " + date;
+                  TotalPara[2].innerHTML = time;
+                
+                  for(let i = 0; i < timeHr; i++) {
+                    TotalHr[i].style.backgroundColor = "rgb(172, 172, 172)";
+                    TotalHr[i].style.boxShadow = "0px 0px 2px black";
+                    TotalHr[i].style.opacity = "0.5";
+                    TotalHr[i].style.borderRadius = "3px";
+                  }
+
+                  for(let i = timeHr; i < 24; i++) {
+                    TotalHr[i].style.backgroundColor = "rgb(172, 172, 172)";
+                    TotalHr[i].style.boxShadow = "0px 0px 2px black";
+                    TotalHr[i].style.borderRadius = "3px";
+                  }
+
+                //   console.log("globalHr-",globalHr);
+                //   console.log("globalSunRiseHr-",globalSunRiseHr);
+                //   console.log("globalMin-",globalMin);
+                //   console.log("globalSunRiseMin-",globalSunRiseMin);
+                //   console.log("globalHr-",globalHr);
+                //   console.log("globalSunSetHr-",globalSunSetHr);
+                //   console.log("globalMin-",globalMin);
+                //   console.log("globalSunSetMin-",globalSunSetMin);
+                //   console.log("globalCloud-",globalCloud);
+                //   console.log("globalPreci-",globalPreci);
+                //   console.log("globalMoonRiseHr-",globalMoonRiseHr);
+                //   console.log("globalMoonRiseMin-",globalMoonRiseMin);
+
+                  // For Current Weather Icons
+                  if ((((globalHr == globalSunRiseHr) && (globalMin >= globalSunRiseMin)) || (globalHr > globalSunRiseHr)) && (((globalHr == globalSunSetHr) && (globalMin <= globalSunSetMin)) || (globalHr < globalSunSetHr)) && (globalCloud < 25) && ((globalPreci < 0.1) || (globalPreci == null) || (globalPreci == undefined))) {
+                    console.log("ONLY SUN");
+                      currentWeatherSun.style.visibility = "visible";
+                      for(let i = 0; i < 6; i++) {
+                        CurrentWeatherIcons[i].style.display = "none";
+                      }
+                  } else if ((((globalHr == globalSunRiseHr) && (globalMin >= globalSunRiseMin)) || (globalHr > globalSunRiseHr)) && (((globalHr == globalSunSetHr) && (globalMin <= globalSunSetMin)) || (globalHr < globalSunSetHr)) && (globalCloud >= 25 && globalCloud < 60) && ((globalPreci < 0.1) || (globalPreci == null) || (globalPreci == undefined))) {
+                    console.log("CLOUD WITH SUN");
+                    currentWeatherSun.style.visibility = "hidden";
+                    CWeatherIcons(3);
+                  } else if ((((globalHr == globalSunRiseHr) && (globalMin >= globalSunRiseMin)) || (globalHr > globalSunRiseHr)) && (((globalHr == globalSunSetHr) && (globalMin <= globalSunSetMin)) || (globalHr < globalSunSetHr)) && (globalCloud >= 60) && ((globalPreci < 0.1) || (globalPreci == null) || (globalPreci == undefined))) {
+                    console.log("MANY CLOUD WITH SUN");
+                    currentWeatherSun.style.visibility = "hidden";
+                    CWeatherIcons(5);
+                  } else if ((globalCloud >= 80) && ((globalPreci >= 0.001 && globalPreci <= 0.1))) {
+                    console.log("ONLY CLOUD");
+                    currentWeatherSun.style.visibility = "hidden";
+                    CWeatherIcons(1);
+                  } else if ((globalCloud >= 80) && ((globalPreci > 0.1))) {
+                    console.log("RAIN");
+                    currentWeatherSun.style.visibility = "hidden";
+                    CWeatherIcons(2);
+                  } else if ((((globalHr == globalMoonRiseHr) && (globalMin >= globalMoonRiseMin)) || (globalHr > globalMoonRiseHr)) && (((globalHr == globalSunRiseHr) && (globalMin < globalSunRiseMin)) || (globalHr < globalSunRiseHr)) && (globalCloud < 25) && ((globalPreci < 0.1) || (globalPreci == null) || (globalPreci == undefined))) {
+                    console.log("ONLY MOON");
+                    currentWeatherSun.style.visibility = "hidden";
+                    CWeatherIcons(0);
+                  } else if ((((globalHr == globalMoonRiseHr) && (globalMin >= globalMoonRiseMin)) || (globalHr > globalMoonRiseHr)) && (((globalHr == globalSunRiseHr) && (globalMin < globalSunRiseMin)) || (globalHr < globalSunRiseHr)) && (globalCloud >= 25) && ((globalPreci < 0.1) || (globalPreci == null) || (globalPreci == undefined))) {
+                    console.log("CLOUD WITH MOON");
+                    currentWeatherSun.style.visibility = "hidden";
+                    CWeatherIcons(4);
+                  } else {
+                    console.log("NOTHING MATCHING");
+                  }
+
+                  function CWeatherIcons(index) {
+                    CurrentWeatherIcons[index].style.display = "block";
+
+                    for(let i = 0; i < CurrentWeatherIcons.length; i++) {
+                        if (i != index) {
+                            CurrentWeatherIcons[i].style.display = "none";
+                        }
+                    }
+                  }
+
+                  // For 24-hour Weather Icons
+                 for(let i = 0; i < 24; i++) {
+                    if ((((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin <= 30)) || (TotalTime[i].innerHTML > globalSunRiseHr)) && (((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin >= 30)) || (TotalTime[i].innerHTML < globalSunRiseHr)) && (HourCloudCover[i] < 25) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null))) {
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalSun[i].style.display = "block";
+                        console.log("-------------------ONLY SUN-----------------");
+                    } else if ((((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin <= 30)) || (TotalTime[i].innerHTML > globalSunRiseHr)) && (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunRiseMin >= 30)) || (TotalTime[i].innerHTML < globalSunSetHr)) && (HourCloudCover[i] >= 25 && HourCloudCover[i] < 60) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null))) {
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "block";
+                        console.log("-------------------ONE CLOUD WITH SUN-----------------");
+                    } else if ((((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin <= 30)) || (TotalTime[i].innerHTML > globalSunRiseHr)) && (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunRiseMin >= 30)) || (TotalTime[i].innerHTML < globalSunSetHr)) && (HourCloudCover[i] >= 60) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) ||(HourPreci[i] == null)) && (HourPreciPercent[i] < 50)) {
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "block";
+                        console.log("-------------------MANY CLOUD WITH SUN-----------------");
+                    } else if ((((TotalTime[i].innerHTML == globalMoonRiseHr) && (globalMoonRiseMin <= 30)) || (TotalTime[i].innerHTML > globalMoonRiseHr)) && (((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin > 30)) || (TotalTime[i].innerHTML < globalSunRiseHr)) && (HourCloudCover[i] < 25) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null))) {
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "block";
+                        console.log("-------------------ONLY MOON-----------------");
+                    } else if ((((TotalTime[i].innerHTML == globalMoonRiseHr) && (globalMoonRiseMin <= 30)) || (TotalTime[i].innerHTML > globalMoonRiseHr)) && (((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin > 30 )) || (TotalTime[i].innerHTML < globalSunRiseHr)) && (HourCloudCover[i] >= 25) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null)) && (HourPreciPercent[i] < 50)) {
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "block";
+                        console.log("-------------------CLOUD WITH MOON-----------------");
+                    } else if ((HourCloudCover[i] >= 80 || HourPreciPercent[i] >=60 ) && (HourPreci[i] <= 0.1)) {
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "block";
+                        console.log("-------------------ONLY CLOUD-----------------");
+                    } else if ((HourCloudCover[i] > 80) && (HourPreci[i] > 0.1 && HourPreci[i] <= 0.2)) {
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalDownpour[i].style.display = "none";
+                        TotalCloudNLight[i].style.display = "block";
+                        console.log("-------------------THUNDER-----------------");
+                    } else if ((HourCloudCover[i] > 80) && (HourPreci[i] > 0.2)) {
+                        TotalSun[i].style.display = "none";
+                        TotalOneCloudSun[i].style.display = "none";
+                        TotalCloudySun[i].style.display = "none";
+                        TotalBlueMoon[i].style.display = "none";
+                        TotalCloudyMoon[i].style.display = "none";
+                        TotalCloudOnly[i].style.display = "none";
+                        TotalCloudNLight[i].style.display = "none";
+                        TotalDownpour[i].style.display = "block";  
+                        console.log("-------------------RAINY-----------------");
+                    }
+                 }
+
+                //  for(let i = 0; i < 23; i++) {
+                //     console.log(`TotalTime${i}`, TotalTime[i].innerHTML);
+                //     console.log(`TotalTime${i}`, TotalTime[i]);
+                //     console.log(`HourCloudCover${i}`, HourCloudCover[i]);
+                //     console.log(`HourPreci${i}`, HourPreci[i]);
+                //     console.log(`HourPreciPercent${i}`, HourPreciPercent[i]);
+                //     console.log("globalHr-",globalHr);
+                //     console.log("globalSunRiseHr-",globalSunRiseHr);
+                //     console.log("globalMin-",globalMin);
+                //     console.log("globalSunRiseMin-",globalSunRiseMin);
+                //     console.log("globalHr-",globalHr);
+                //     console.log("globalSunSetHr-",globalSunSetHr);
+                //     console.log("globalMin-",globalMin);
+                //     console.log("globalSunSetMin-",globalSunSetMin);
+                //     console.log("globalMoonRiseHr-",globalMoonRiseHr);
+                //     console.log("globalMoonRiseMin-",globalMoonRiseMin);
+                //     console.log(`---------------------${i}-----------------`);
+                //  }
+
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+            }
+    </script>
+    
+</body>
+</html>
