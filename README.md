@@ -51,4 +51,9 @@ The Weather Forecast Project is a web application that provides current weather 
 5.Visual Crossing Weather Data<br>
 6.IP Geolocation API<br>
 
+<h2>Some screenshots of this project</h2>
 
+![WeatherForecast1](https://github.com/TathagatRaj/Weather_Forecast/assets/172009462/b1e6e8c5-456f-47b3-bb9d-e5e5068d198e)
+![WeatherForecast2](https://github.com/TathagatRaj/Weather_Forecast/assets/172009462/341e305b-430a-4630-8cb7-a5e5e8ddc014)
+![WeatherForecast3](https://github.com/TathagatRaj/Weather_Forecast/assets/172009462/93842043-d183-41c2-baa1-e9c43c813ec5)
+![WeatherForecast4](https://github.com/TathagatRaj/Weather_Forecast/assets/172009462/6f6f9744-1221-4a58-8490-1087904cf824)
