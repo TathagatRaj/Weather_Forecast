@@ -1,6 +1,6 @@
 ## Weather Forecast Project 
 
-The Weather Forecast Project is a web application that provides current weather information and a forecast for the next several days for any location. It utilizes 6 different APIs to fetch real-time data and presents it in a user-friendly interface. The user need to select the country and the city to get the weather forecast data about that city.
+The Weather Forecast Project is a responsive web application that provides current weather information and a forecast for the next several days for any location. It utilizes 6 different APIs to fetch real-time data and presents it in a user-friendly interface. The user need to select the country and the city to get the weather forecast data about that city.
 
 ### Features
 
