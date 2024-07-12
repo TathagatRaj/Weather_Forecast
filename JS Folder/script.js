@@ -52,7 +52,8 @@ const TotalCloudySun = show_icons("cloudySun",25)                               
 const TotalBlueMoon = show_icons("blueMoon",25)                                         // Blue Moon Icons (24-hour)
 const TotalCloudyMoon = show_icons("cloudyMoon",25)                                     // Cloudy Moon Icons (24-hour)  
 const TotalOneCloudSun = show_icons("oneCloudSun",25)                                   // One Cloud with Sun (24-hour)
-const TotalStars = show_icons("onlyStars",25)                                           // Only Stars (24-hour);
+const TotalStars = show_icons("onlyStars",25)                                           // Only Stars (24-hour)
+const TotalModerateRain = show_icons("ModerateRain",25)                                 // Moderate Rain Icons (24-hour)
 const TotalVeryHot = show_icons("VeryHot",16)                                           // Very Hot Icons (15-day)
 const TotalSunny = show_icons("Sunny",16)                                               // Yellow Sun Icons (15-day)
 const TotalVeryCold = show_icons("VeryCold",16)                                         // Very Cold Icons (15-day)
@@ -125,6 +126,7 @@ function resetWeatherIcons() {
         TotalOneCloudSun[i].style.display = "none";
         TotalStars[i].style.display = "none";
         TotalSun[i].style.display = "none";
+        TotalModerateRain[i].style.display = "none";
     }
 }
 
@@ -225,11 +227,12 @@ function WeatherInfo() {
             for(let i = 0; i < TotalPara.length; i++) {
                 TotalPara[i].innerHTML = "- -";
             }
-            TotalPara[5].innerHTML = "!!!  Weather data for this city is not available.";
-            TotalPara[5].style.color = "red";
+            TotalPara[5].innerHTML = "--";
+            // TotalPara[5].style.color = "red";
             TotalPara[9].style.color = "black";
             currentWeatherSun.style.visibility = "hidden";
-            PresentCity.innerHTML = "- -";
+            PresentCity.innerHTML = "!!!  Weather data for this city is not available.";
+            PresentCity.style.color = "red";
             for(let i = 0; i < CurrentWeatherIcons.length; i++) {
                 CurrentWeatherIcons[i].style.display = "none";
             }
@@ -254,7 +257,7 @@ function WeatherInfo() {
     const Descriptions = [];
     const DaysCloudCover = [];                                         // 15-PerDay Avg Cloudcover Data
     const DaysPreci = [];                                              // 15-PerDay Avg Precipitation Amount Data
-    const DaysTemp = [];                                               // 15-PerDay Avg Temp Data                                      
+    // const DaysTemp = [];                                               // 15-PerDay Avg Temp Data                                      
     for (let i = 0; i < 15; i++) {
         DayMax.push(Math.round((days[i].tempmax - "32") * 5/9));
         DayMin.push(Math.round((days[i].tempmin - "32") * 5/9));
@@ -263,7 +266,7 @@ function WeatherInfo() {
         Descriptions.push(days[i].description);
         DaysCloudCover.push(Math.round(data.days[i].cloudcover));
         DaysPreci.push(data.days[i].precip);
-        DaysTemp.push(Math.round(data.days[i].temp));
+        // DaysTemp.push(Math.round(data.days[i].temp));
     }
 
     // 24-hour forecast
@@ -365,6 +368,7 @@ function WeatherInfo() {
         TotalPreci[i].innerHTML = HourPreciPercent[i] + "%";
     }
     
+    PresentCity.style.color = "white";
     if (AddressState == undefined) {
         PresentCity.innerHTML = AddressCity + ", " + standardTemp + "&degC";    
     } else {
@@ -375,19 +379,19 @@ function WeatherInfo() {
         
     // For 15-Days Weather Icons
     for(let i = 0; i < 15; i++) {
-        if (DaysTemp[i] > 104) {
+        if (DayMax[i] > 40) {
             TotalVeryHot[i].style.display = "block";
-        } else if (DaysTemp[i] < 32) {
+        } else if (DayMax[i] <= 0) {
             TotalVeryCold[i].style.display = "block";
         } else if ((DaysCloudCover[i] >= 60) && (DaysPreci[i] > 0.2 && DaysPreci[i] < 0.4) && (Precipitations[i] > 50)) {
             TotalStorm[i].style.display = "block";
         } else if (DaysPreci[i] >= 0.4) {
             TotalRaining[i].style.display = "block";
-        } else if ((DaysCloudCover[i] <= 25) && (DaysPreci[i] <= 0.1) && (Precipitations[i] < 50) && (DaysTemp[i] <= 104 && DaysTemp[i] > 50 )) {
+        } else if ((DaysCloudCover[i] <= 25) && (DayMax[i] <= 40 && DayMax[i] > 10 )) {
             TotalSunny[i].style.display = "block";
-        } else if ((DaysCloudCover[i] > 25 && DaysCloudCover[i] <= 60) && (DaysPreci[i] <= 0.1 || DaysPreci[i] == undefined || DaysPreci[i] == null) && (DaysTemp[i] <= 104)) {
+        } else if ((DaysCloudCover[i] > 25 && DaysCloudCover[i] <= 60) && (DaysPreci[i] <= 0.1 || DaysPreci[i] == undefined || DaysPreci[i] == null) && (DayMax[i] <= 40)) {
             TotalSunNCloud[i].style.display = "block";
-        } else if ((DaysCloudCover[i] > 60) && ((DaysPreci[i] <= 0.1) || (DaysPreci[i] == null) || (DaysPreci[i] == undefined)) && (DaysTemp[i] <= 104)) {
+        } else if ((DaysCloudCover[i] > 60) && ((DaysPreci[i] <= 0.1) || (DaysPreci[i] == null) || (DaysPreci[i] == undefined)) && (DayMax[i] <= 40)) {
             TotalSunNManyCloud[i].style.display = "block";
         } else if ((((DaysCloudCover[i] > 40) && (Precipitations[i] > 40))  || (DaysCloudCover[i] >= 90) || ((DaysCloudCover[i] < 40) && Precipitations[i] >= 50)) && (DaysPreci[i] < 0.4)) {
             TotalCloudyDay[i].style.display = "block";
@@ -425,6 +429,7 @@ FetchApiData(`https://api.weatherbit.io/v2.0/current/airquality?lat=${globalLati
         AqiMeter(Meter_num);
     }
 
+    //For Air Quality
     if (AirQuality >= 0 && AirQuality <= 19) {
         AqiData("Excellent","rgb(6, 206, 206)","The air quality is ideal for most individuals, enjoy your normal outdoor activities.",0)
     } else if (AirQuality >= 20 && AirQuality <= 50) {
@@ -582,21 +587,23 @@ FetchApiData(`https://api.ipgeolocation.io/timezone?apiKey=4f23a4b6279643c1a8e4b
                 TotalSun[i].style.display = "block";
             } else if ((((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin <= 30)) || (TotalTime[i].innerHTML > globalSunRiseHr)) && (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin >= 30)) || (TotalTime[i].innerHTML < globalSunSetHr)) && (HourCloudCover[i] >= 25 && HourCloudCover[i] < 60) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null))) {
                 TotalOneCloudSun[i].style.display = "block";
-            } else if ((((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin <= 30)) || (TotalTime[i].innerHTML > globalSunRiseHr)) && (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin >= 30)) || (TotalTime[i].innerHTML < globalSunSetHr)) && (HourCloudCover[i] >= 60) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) ||(HourPreci[i] == null)) && (HourPreciPercent[i] < 50)) {
+            } else if ((((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin <= 30)) || (TotalTime[i].innerHTML > globalSunRiseHr)) && (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin >= 30)) || (TotalTime[i].innerHTML < globalSunSetHr)) && (HourCloudCover[i] >= 60) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) ||(HourPreci[i] == null)) && (HourPreciPercent[i] <= 50)) {
                 TotalCloudySun[i].style.display = "block";
             } else if ((((TotalTime[i].innerHTML == globalMoonRiseHr) && (globalMoonRiseMin <= 30)) || (TotalTime[i].innerHTML > globalMoonRiseHr)) && (((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin > 30)) || ((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin < 30)) || (TotalTime[i].innerHTML < globalSunRiseHr) || (TotalTime[i].innerHTML > globalSunSetHr)) && (((TotalTime[i].innerHTML == globalMoonSetHr) && (globalMoonSetMin > 30)) || (TotalTime[i].innerHTML < globalMoonSetHr)) && (HourCloudCover[i] < 25) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null))) {
                 TotalBlueMoon[i].style.display = "block";
             } else if ((((TotalTime[i].innerHTML == globalMoonRiseHr) && (globalMoonRiseMin <= 30)) || (TotalTime[i].innerHTML > globalMoonRiseHr)) && (((TotalTime[i].innerHTML == globalSunRiseHr) && (globalSunRiseMin > 30 )) || ((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin < 30)) || (TotalTime[i].innerHTML < globalSunRiseHr) || (TotalTime[i].innerHTML > globalSunSetHr)) && (((TotalTime[i].innerHTML == globalMoonSetHr) && (globalMoonSetMin > 30)) || (TotalTime[i].innerHTML < globalMoonSetHr)) && (HourCloudCover[i] >= 25) && ((HourPreci[i] < 0.1) || (HourPreci[i] == undefined) || (HourPreci[i] == null)) && (HourPreciPercent[i] < 50)) {
                 TotalCloudyMoon[i].style.display = "block";
-            } else if ((HourCloudCover[i] >= 40 || HourPreciPercent[i] >=60 ) && (HourPreci[i] <= 0.1)) {
+            } else if ((((HourCloudCover[i] >= 40) && (HourCloudCover[i] < 80) || HourPreciPercent[i] >=60 ) && (HourPreci[i] <= 0.2)) || ((HourCloudCover[i] > 60) && (HourPreci[i] < 0.1))) {
                 TotalCloudOnly[i].style.display = "block";
-            } else if ((HourCloudCover[i] < 40) && (((TotalTime[i].innerHTML == globalMoonRiseHr) && (globalMoonRiseMin > 30)) || (TotalTime[i].innerHTML < globalMoonRiseHr)) || (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin < 30)) || (TotalTime[i].innerHTML > globalSunSetHr) || TotalTime[i].innerHTML == 0)) {
+            } else if ((HourCloudCover[i] <= 60) && (((TotalTime[i].innerHTML == globalMoonRiseHr) && (globalMoonRiseMin > 30)) || (TotalTime[i].innerHTML < globalMoonRiseHr)) || (((TotalTime[i].innerHTML == globalSunSetHr) && (globalSunSetMin < 30)) || (TotalTime[i].innerHTML > globalSunSetHr) || TotalTime[i].innerHTML == 0)) {
                 TotalStars[i].style.display = "block"
-            } else if ((HourCloudCover[i] > 80) && (HourPreci[i] > 0.1 && HourPreci[i] <= 0.2)) {
+            } else if ((HourCloudCover[i] >= 80) && (HourPreci[i] > 0.1 && HourPreci[i] <= 0.2)) {
                 TotalCloudNLight[i].style.display = "block";
-            } else if ((HourCloudCover[i] > 80) && (HourPreci[i] > 0.2)) {
+            } else if ((HourCloudCover[i] >= 80) && (HourPreci[i] > 0.2)) {
                 TotalDownpour[i].style.display = "block";  
-            } 
+            } else if ((HourCloudCover[i] >= 25 && HourCloudCover[i] < 40) && (HourPreci[i] > 0.1 && HourPreci[i] <= 0.2)) {
+                TotalModerateRain[i].style.display = "block";
+            }   
         }
     })
     .catch(error => {
