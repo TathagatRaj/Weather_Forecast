@@ -54,6 +54,21 @@ The Weather Forecast Project is a responsive web application that provides curre
 5. Visual Crossing Weather Data
 6. IP Geolocation API
 
+###  How to Run This Program
+
+1. Clone the repository to your local machine:
+```bash
+git clone https://github.com/TathagatRaj/Weather_Forecast
+```
+2. Navigate to the project folder.
+3. Double-click the index.html file to open it in your browser.
+
+### Notes
+
+   - No additional installation or setup is required.
+   - This project is purely frontend and works offline.
+   - For the best experience, use the latest version of modern browsers like Google Chrome, Firefox, or Edge.
+
 ### Some screenshots of this project
 
 ![WeatherForecast1](https://github.com/TathagatRaj/Weather_Forecast/assets/172009462/b1e6e8c5-456f-47b3-bb9d-e5e5068d198e)
